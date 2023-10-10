@@ -15,7 +15,6 @@ public class FallingObject : MonoBehaviour
     {
         keyCode = GetRandomAlphabet();
         letter = keyCode.ToString();
-        //letter = "A";
         objText.text = letter;
         Spawner.Instance.OnDestroyObject += OnDestroyThisObject;
     }
@@ -27,7 +26,7 @@ public class FallingObject : MonoBehaviour
         }
     }
     private void OnDestroy()
-    {
+    {        
         Spawner.Instance.OnDestroyObject -= OnDestroyThisObject;
     }
     public KeyCode GetRandomAlphabet()
@@ -40,8 +39,13 @@ public class FallingObject : MonoBehaviour
 
     private void OnDestroyThisObject(string keyCode)
     {
+
         if (keyCode == letter)
+        {
             Destroy(gameObject);
+            Score.Instance.IncreaseScore();
+        }
     }
+    
 }
 

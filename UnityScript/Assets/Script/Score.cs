@@ -3,40 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
-    public Text scoreText;
-    private int score;
-    public Text healthText;
-    private int health = 3;
-    void Update()
+    public static Score Instance;
+    [SerializeField] private int score;
+    [SerializeField] private int health;
+    public TMP_Text scoreText;    
+    public TMP_Text healthText;
+    
+    private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         scoreText.text = score.ToString();
         healthText.text = health.ToString();
     }
-
-    private void OnTriggerEnter2D(Collider2D target)
+    public void IncreaseScore()
     {
-        if(target.tag == "egg")
-        {
-            Destroy(target.gameObject);
-            score++;
-        }
-        if (target.tag == "goldenEgg")
-        {
-            Destroy(target.gameObject);
-            score+=10;
-        }
-        if(target.tag == "bomb")
-        {
-            Destroy(target.gameObject);
-            health--;
-            if(health <= 0)
-            {
-                SceneManager.LoadScene("Gameover", LoadSceneMode.Additive);
-            }
-        }
-
+        score++;
+        scoreText.text = score.ToString();
+    }
+    public void DecreaseHealth()
+    {
+        health--;
+        healthText.text = health.ToString();
     }
 }

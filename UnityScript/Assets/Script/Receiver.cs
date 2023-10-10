@@ -62,14 +62,9 @@ public class Receiver : MonoBehaviour
 
         if (dataReceived != null)
         {
-            
-            //---Using received data---
-            //receivedPos = StringToVector3(dataReceived); //<-- assigning receivedPos value from Python
             receivedLetter = ReceiveData(dataReceived);
             i++;
-            //Debug.Log(receivedLetter + i);
-            
-            //---Sending Data to Host----
+
             byte[] myWriteBuffer = Encoding.ASCII.GetBytes("Hey I got your message Python! Do You see this massage?"); //Converting string to byte data
             nwStream.Write(myWriteBuffer, 0, myWriteBuffer.Length); //Sending the data in Bytes to Python
         }

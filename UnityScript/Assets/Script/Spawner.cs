@@ -21,20 +21,28 @@ public class Spawner : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-
-    private void Update()
+    public IEnumerator spawnObjectEasyMode()
     {
-        
-    }
-    public IEnumerator spawnObject()
-    {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 2f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 3f));
         var obj = Instantiate(fallingObjPrefab, new Vector2(UnityEngine.Random.Range(-xBound, xBound), ybound), Quaternion.identity);
         
         listObj.Add(obj);
-        StartCoroutine(spawnObject());
+        StartCoroutine(spawnObjectEasyMode());
     }
+    public IEnumerator spawnObjectMediumMode()
+    {
+        yield return new WaitForSeconds(UnityEngine.Random.Range(1.5f, 2f));
+        var obj = Instantiate(fallingObjPrefab, new Vector2(UnityEngine.Random.Range(-xBound, xBound), ybound), Quaternion.identity);
 
+        listObj.Add(obj);
+        StartCoroutine(spawnObjectMediumMode());
+    }
+    public IEnumerator spawnObjectHardMode()
+    {
+        yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 1.5f));
+        var obj = Instantiate(fallingObjPrefab, new Vector2(UnityEngine.Random.Range(-xBound, xBound), ybound), Quaternion.identity);
 
+        listObj.Add(obj);
+        StartCoroutine(spawnObjectHardMode());
+    }
 }

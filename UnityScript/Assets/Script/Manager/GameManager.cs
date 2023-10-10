@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    //public Action<KeyCode> destroyObjectWithThisKey;
     public Action<string> destroyObjectWithThisKey;
     
     private void Awake()
@@ -21,56 +22,44 @@ public class GameManager : MonoBehaviour
         }
         destroyObjectWithThisKey += DestroyObjectWithThisKey;
     }
-
-    private void Update()
+    private void Start()
     {
-        //if (Input.anyKeyDown)
-        //{
-        //    KeyCode keyPressed = GetKeyPressed();
-        //    Debug.Log("Pressed key: " + keyPressed);
-        //    OnPressKey(keyPressed);
-        //}
-        //Debug.Log(Receiver.Instance.receivedLetter);
 
-        //if(Receiver.Instance.receivedLetter != null)
-        //{
-        //    letter = Receiver.Instance.receivedLetter;
-        //}
-
+        OpenFile();
         
+
     }
+    public void OpenFile()
+    {
+        // Create a new process instance
+        var argument = "C:\\Manh\\Thuc_tap\\BTVN\\game\\Project_2\\Assets" ;
+        var processInfo = new ProcessStartInfo()
+        {
+            UseShellExecute = false,
+            FileName = "C:\\Manh\\Thuc_tap\\BTVN\\game\\Project_2\\Assets\\sub.exe",
+            CreateNoWindow = false,
+            WindowStyle = ProcessWindowStyle.Normal,
+            RedirectStandardOutput = true,
+            Arguments = argument,
+        };
 
-    //private KeyCode GetKeyPressed()
-    //{
-    //    foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
-    //    {
-    //        if (Input.GetKeyDown(keyCode))
-    //        {
-    //            return keyCode;
-    //        }
-    //    }
-    //    return KeyCode.None;
-    //}
-    //public void OnPressKey(KeyCode keyCode)
-    //{
-    //    //if (Input.anyKey)
-    //    //{
-    //    //KeyCode keyPressed = Event.current.keyCode;
+        // Provide the path to the .exe file as the FileName property
+        //Process process = new Process();
+        //process.StartInfo.FileName = "C:\\Manh\\Thuc_tap\\BTVN\\game\\Project_2\\Assets\\sub.exe";
+        //process.StartInfo.FileName = "C:\\Windows\\System32\\cmd.exe";
+        // Start the process
+        
+        
+        var process = Process.Start(processInfo);
 
-    //    //string keyString = keyPressed.ToString();
-    //    destroyObjectWithThisKey?.Invoke(keyCode);
-    //    //}
-    //}
-
+    }
     public void OnPressKey(string keyCode)
     {
         Spawner.Instance.OnDestroyObject?.Invoke(keyCode);
-        //destroyObjectWithThisKey?.Invoke(keyCode);
     }
 
     public void DestroyObjectWithThisKey(string keyCode)
     {
-        Debug.Log("here");
         for(int i = 0; i < Spawner.Instance.listObj.Count; i++)
         {
             if (Spawner.Instance.listObj[i].letter == keyCode)
@@ -85,5 +74,20 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         destroyObjectWithThisKey -= DestroyObjectWithThisKey;
+    }
+    public static void StartApplication(string applicationName, string argument = "", bool useShellExecute = true, bool createNoWindow = false)
+    {
+        Process task = new Process
+        {
+            StartInfo =
+    {
+      UseShellExecute = useShellExecute,
+      FileName = applicationName,
+      Arguments = argument,
+      CreateNoWindow = createNoWindow
+    }
+        };
+
+        task.Start();
     }
 }

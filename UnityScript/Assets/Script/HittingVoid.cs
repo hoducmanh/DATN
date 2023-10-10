@@ -9,6 +9,7 @@ public class HittingVoid : MonoBehaviour
         if (collision.tag == "Object")
         {
             Destroy(collision.gameObject);
+            Score.Instance.DecreaseHealth();
         }
     }
 }
