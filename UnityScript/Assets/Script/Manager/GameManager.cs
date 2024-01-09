@@ -1,93 +1,41 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonDontDestroy<GameManager>
 {
-    public static GameManager Instance;
-    public Action<string> destroyObjectWithThisKey;
-    
-    private void Awake()
+    public string[] sceneName;
+    public GameMode currentGameMode;
+    public bool isModelOpen;
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        destroyObjectWithThisKey += DestroyObjectWithThisKey;
+        base.Awake();
+        currentGameMode = GameMode.None;
+        GameEvent.OnLoadHome += LoadHome;
+        GameEvent.OnGameWin += OnWin;
     }
-    private void Start()
+    public void LoadMiniGame(int gameNum)
     {
-
-        OpenFile();
-        
-
+        SceneManager.LoadScene(sceneName[gameNum]);
+        currentGameMode = (GameMode)gameNum;
+        Receiver.Instance.StartNewThread();
     }
-    public void OpenFile()
+    public void LoadHome()
     {
-        // Create a new process instance
-        var argument = "C:\\Manh\\Thuc_tap\\BTVN\\game\\Project_2\\Assets" ;
-        var processInfo = new ProcessStartInfo()
-        {
-            UseShellExecute = false,
-            FileName = "C:\\Manh\\Thuc_tap\\BTVN\\game\\Project_2\\Assets\\sub.exe",
-            CreateNoWindow = false,
-            WindowStyle = ProcessWindowStyle.Normal,
-            RedirectStandardOutput = true,
-            Arguments = argument,
-        };
-
-        // Provide the path to the .exe file as the FileName property
-        //Process process = new Process();
-        //process.StartInfo.FileName = "C:\\Manh\\Thuc_tap\\BTVN\\game\\Project_2\\Assets\\sub.exe";
-        //process.StartInfo.FileName = "C:\\Windows\\System32\\cmd.exe";
-        // Start the process
-        
-        
-        var process = Process.Start(processInfo);
-
+        SceneManager.LoadScene("MainMenu");
     }
-    public void OnPressKey(string keyCode)
-    {
-        Spawner.Instance.OnDestroyObject?.Invoke(keyCode);
-    }
-
-    public void DestroyObjectWithThisKey(string keyCode)
-    {
-        for(int i = 0; i < Spawner.Instance.listObj.Count; i++)
-        {
-            if (Spawner.Instance.listObj[i].letter == keyCode)
-            {
-                FallingObject tmp = Spawner.Instance.listObj[i];
-                Spawner.Instance.listObj.RemoveAt(i);
-                Destroy(tmp);
-            }
-        }
-    }
-
     private void OnDestroy()
     {
-        destroyObjectWithThisKey -= DestroyObjectWithThisKey;
+        GameEvent.OnLoadHome -= LoadHome;
+        GameEvent.OnGameWin -= OnWin;   
     }
-    public static void StartApplication(string applicationName, string argument = "", bool useShellExecute = true, bool createNoWindow = false)
+    private void OnWin()
     {
-        Process task = new Process
-        {
-            StartInfo =
-    {
-      UseShellExecute = useShellExecute,
-      FileName = applicationName,
-      Arguments = argument,
-      CreateNoWindow = createNoWindow
+        Debug.Log("Win");
     }
-        };
 
-        task.Start();
-    }
+}
+public enum GameMode
+{
+    BreakTheBlock, Coloring, Quiz, None
 }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60001af1f712e914b935a635f9637bf7, type: 3}
+  m_Name: Picture1
+  m_EditorClassIdentifier: 
+  colorNum: 3
+  pictureDatas:
+  - parts: 01000000000000000000000000000000000000000000000000000000
+    color: 
+    colorHex: 
+  - parts: 000000000700000008000000090000000a0000000e0000000f000000
+    color: orange
+    colorHex: FF8900
+  - parts: 010000000200000003000000060000000c000000
+    color: brown
+    colorHex: 714562
+  - parts: 0400000005000000
+    color: yellow
+    colorHex: F8FF14
