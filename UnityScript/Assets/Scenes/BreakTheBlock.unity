@@ -123,52 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &42540078
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 42540079}
-  - component: {fileID: 42540080}
-  m_Layer: 0
-  m_Name: GameManagerBTB
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &42540079
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42540078}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &42540080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42540078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e686b75b38f068e41808f940442afa99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawner: {fileID: 952230054}
-  btbUIManager: {fileID: 1994082564}
 --- !u!1 &161257404
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +397,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &353161811
 GameObject:
@@ -585,7 +539,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1994082564}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BreakTheBlockUIManager, Assembly-CSharp
         m_MethodName: OnClickPauseButton
         m_Mode: 1
@@ -1391,6 +1345,7 @@ GameObject:
   - component: {fileID: 1688236574}
   - component: {fileID: 1688236573}
   - component: {fileID: 1688236572}
+  - component: {fileID: 1688236576}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1484,6 +1439,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1688236576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688236571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc0078e2ba81f34d87dd8b4ffe60399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseButton: {fileID: 408187451}
+  resumeButton: {fileID: 3429011715739418664}
+  restartButton: {fileID: 3429011716007049530}
+  homeButton: {fileID: 3429011714701295608}
+  pauseScreen: {fileID: 3429011715755908828}
+  loadingScreen: {fileID: 1211179399}
+  ingameUI: {fileID: 353161811}
+  ingameData: {fileID: 353161813}
+  popupLose: {fileID: 947951007}
 --- !u!1 &1786629519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,7 +1865,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1994082565}
-  - component: {fileID: 1994082564}
   m_Layer: 0
   m_Name: UIManagerBTB
   m_TagString: Untagged
@@ -1897,27 +1872,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1994082564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994082563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc0078e2ba81f34d87dd8b4ffe60399, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseButton: {fileID: 408187451}
-  resumeButton: {fileID: 3429011715739418664}
-  restartButton: {fileID: 3429011716007049530}
-  homeButton: {fileID: 3429011714701295608}
-  pauseScreen: {fileID: 3429011715755908828}
-  loadingScreen: {fileID: 1211179399}
-  ingameUI: {fileID: 353161811}
-  ingameData: {fileID: 353161813}
-  popupLose: {fileID: 947951007}
 --- !u!4 &1994082565
 Transform:
   m_ObjectHideFlags: 0
@@ -2621,7 +2575,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1994082564}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BreakTheBlockUIManager, Assembly-CSharp
         m_MethodName: OnClickHomeButton
         m_Mode: 1
@@ -3338,7 +3292,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1994082564}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BreakTheBlockUIManager, Assembly-CSharp
         m_MethodName: OnClickResumeButton
         m_Mode: 1

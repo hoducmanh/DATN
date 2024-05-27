@@ -9,16 +9,30 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject modeChoosingScreen;
     [SerializeField] private GameObject settingScreen;
+    [SerializeField] private GameObject collectionScreen;
+    [SerializeField] private GameObject achievementScreen;
     [SerializeField] private Button breakTheBlockButton;
     [SerializeField] private Button coloringButton;
     [SerializeField] private Button quizzyButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button achievementButton;
+    [SerializeField] private Button collectionButton;
     private void OnEnable()
     {
         breakTheBlockButton.onClick.AddListener(OnClickBreakTheBlockButton);
         coloringButton.onClick.AddListener(OnClickColoringButton);
         quizzyButton.onClick.AddListener(OnClickQuizzyButton);
         exitButton.onClick.AddListener(OnClickExitButton);
+        achievementButton.onClick.AddListener(OnClickAchievementButton);
+        collectionButton.onClick.AddListener(OnClickCollectionButton);
+    }
+    private void OnClickCollectionButton()
+    {
+        collectionScreen.SetActive(true);
+    }
+    private void OnClickAchievementButton()
+    {
+        achievementScreen.SetActive(true);
     }
     private void OnClickBreakTheBlockButton()
     {
