@@ -6,15 +6,36 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Game/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/BreakTheBlock.unity
+    path: Assets/Game/Scenes/BreakTheBlock.unity
     guid: 7eecf15b47a63564cb07dc8f86adb0b0
   - enabled: 1
-    path: Assets/Scenes/Coloring.unity
+    path: Assets/Game/Scenes/Coloring.unity
     guid: 640b4c3031966b545b5913fda3c96cb6
   - enabled: 1
-    path: Assets/Scenes/Quizzy.unity
+    path: Assets/Game/Scenes/Quizzy.unity
     guid: 51cb9630abf64ca45bdaef3d4d44b7b4
+  - enabled: 1
+    path: Assets/Game/Scenes/Learning.unity
+    guid: 22e8322bbff53904e9ed8f0e701b84da
+  - enabled: 0
+    path: Assets/Game/Scenes/LearningScene/Lesson1.unity
+    guid: 4d6b708bedc13354689334578db10bee
+  - enabled: 0
+    path: Assets/Game/Scenes/LearningScene/Lesson2.unity
+    guid: 9a35100dfb885e34b9e30268be4916da
+  - enabled: 0
+    path: Assets/Game/Scenes/LearningScene/Lesson3.unity
+    guid: 06ec3363b6b65174daf1d6345fa75abd
+  - enabled: 0
+    path: Assets/Game/Scenes/LearningScene/Lesson4.unity
+    guid: cc598d5bcb6a2dd4b820045b751c7d44
+  - enabled: 0
+    path: Assets/Game/Scenes/LearningScene/Lesson5.unity
+    guid: 2b68ffe9a6b4f904da84d26588741f7f
+  - enabled: 0
+    path: Assets/Game/Scenes/LearningScene/Lesson6.unity
+    guid: 7a5ce6c67ad29134b9f45e8cd565c479
   m_configObjects: {}
