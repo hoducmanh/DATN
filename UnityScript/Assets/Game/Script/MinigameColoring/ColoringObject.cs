@@ -4,39 +4,21 @@ using UnityEngine;
 
 public class ColoringObject : SingletonMonoBehavior<ColoringObject>
 {
-    [SerializeField] private List<SpriteRenderer> renderers;
+    [SerializeField] private List<string> listColor;
     public PictureSO pictureSO;
     protected override void Awake()
     {
         base.Awake();
-        GameEvent.OnColoring += ChangeColor;
+        GameEvent.OnColoring += FinishParts;
     }
-    void Start()
+    public void FinishParts(string sign)
     {
-        //LoadDataFromSO();
+        listColor.RemoveAll(str => str == sign);
+        if (listColor.Count <= 0) GameEvent.OnLevelComplete?.Invoke();
     }
-    private void LoadDataFromSO()
+    protected override void OnDestroy()
     {
-        for(int i = 1;i <= pictureSO.colorNum; i++)
-        {
-            SetColorForParts(pictureSO.pictureDatas[i]);
-        }
-    }
-    private void SetColorForParts(PictureData data)
-    {
-        Color tempColor;
-        ColorUtility.TryParseHtmlString(data.color, out tempColor);
-        for(int i = 0;i < data.parts.Length; i++)
-        {
-            renderers[data.parts[i]].color = tempColor;
-        }
-    }
-    private void ChangeColor(string colorName)
-    {
-        for (int i = 1; i <= pictureSO.colorNum; i++)
-        {
-            if(pictureSO.pictureDatas[i].color == colorName)
-                SetColorForParts(pictureSO.pictureDatas[i]);
-        }
+        base.OnDestroy();
+        GameEvent.OnColoring -= FinishParts;
     }
 }

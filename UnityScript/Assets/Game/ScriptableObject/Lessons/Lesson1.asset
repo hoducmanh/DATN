@@ -45,7 +45,10 @@ MonoBehaviour:
     name: F
     description: "Press your index finger and thumb together with straight fingers
       for \u201CF.\u201D Keep your other 3 fingers straight"
-  - sprite: {fileID: 21300000, guid: dbcc7e2e7a2bf4541957077494914412, type: 3}
-    name: F
-    description: "Press your index finger and thumb together with straight fingers
-      for \u201CF.\u201D Keep your other 3 fingers straight"
+  videoUrls:
+  - Assets/Game/Video/A.mov
+  - Assets/Game/Video/B.mov
+  - Assets/Game/Video/C.mov
+  - Assets/Game/Video/D.mov
+  - Assets/Game/Video/E.mov
+  - Assets/Game/Video/F.mov

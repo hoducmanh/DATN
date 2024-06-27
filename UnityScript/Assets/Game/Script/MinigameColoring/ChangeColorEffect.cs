@@ -9,14 +9,11 @@ public class ChangeColorEffect : MonoBehaviour
     [SerializeField] private Color colorHex;
     [SerializeField] private string colorName;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    public int id;
     private float speed = 0.5f;
     private void Awake()
     {
         GameEvent.OnColoring += SetColor;
-    }
-    private void Start()
-    {
-        //StartCoroutine(ChangeColor());
     }
     private IEnumerator ChangeColor()
     {
@@ -30,7 +27,15 @@ public class ChangeColorEffect : MonoBehaviour
     }
     public void SetColor(string invokedColor)
     {
+        Debug.Log("here " + invokedColor);
         if(invokedColor == colorName)
+        {
             StartCoroutine(ChangeColor());
+        }
+            
+    }
+    private void OnDestroy()
+    {
+        GameEvent.OnColoring -= SetColor;
     }
 }

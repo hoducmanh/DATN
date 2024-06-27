@@ -16,12 +16,14 @@ public class BreakTheBlockUIManager : SingletonMonoBehavior<BreakTheBlockUIManag
     [SerializeField] private GameObject ingameUI;
     [SerializeField] private BreakTheBlockIngameData ingameData;
     [SerializeField] private GameObject popupLose;
+    [SerializeField] private GameObject tutorialPopup;
 
     protected override void Awake()
     {
         base.Awake();
         GameEvent.OnGameLose += OnGameLoseEvent;
         GameEvent.OnRestartGame += OnRestartGameEvent;
+        pauseButton.onClick.AddListener(OnClickPauseButton);
     }
     private void OnGameLoseEvent()
     {
@@ -57,6 +59,13 @@ public class BreakTheBlockUIManager : SingletonMonoBehavior<BreakTheBlockUIManag
         popupLose.SetActive(false);
         pauseButton.gameObject.SetActive(true);
     }
+    public void OnClickRestartButton()
+    {
+        GameEvent.OnRestartGame?.Invoke();
+        Time.timeScale = 1f;
+        pauseScreen.SetActive(false);
+        pauseButton.gameObject.SetActive(true);
+    }
     public void OnMinigameStart()
     {
         StartCoroutine(DelayTime());
@@ -66,9 +75,12 @@ public class BreakTheBlockUIManager : SingletonMonoBehavior<BreakTheBlockUIManag
         Time.timeScale = 1f;
         loadingScreen.SetActive(true);
         yield return new WaitForSeconds(10f);
+        loadingScreen.SetActive(false);
+        tutorialPopup.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        tutorialPopup.SetActive(false);
         pauseButton.gameObject.SetActive(true);
         ingameUI.gameObject.SetActive(true);
-        loadingScreen.SetActive(false);
         ResetScoreAndLife();
     }
     protected override void OnDestroy()
@@ -76,5 +88,6 @@ public class BreakTheBlockUIManager : SingletonMonoBehavior<BreakTheBlockUIManag
         base.OnDestroy();
         GameEvent.OnGameLose -= OnGameLoseEvent;
         GameEvent.OnRestartGame -= OnRestartGameEvent;
+        pauseButton.onClick.RemoveAllListeners();
     }
 }

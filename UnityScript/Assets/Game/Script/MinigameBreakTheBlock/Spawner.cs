@@ -17,8 +17,7 @@ public class Spawner : SingletonMonoBehavior<Spawner>
     }
     private IEnumerator spawnObjectEasyMode()
     {
-        yield return new WaitForSeconds(10f);
-        yield return new WaitForSeconds(UnityEngine.Random.Range(1.5f, 2f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 1.2f));
         var obj = Instantiate(fallingObjPrefab, new Vector2(UnityEngine.Random.Range(-xBound, xBound), ybound), Quaternion.identity);
         
         listObj.Add(obj);

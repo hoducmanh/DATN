@@ -5,6 +5,7 @@ using UnityEngine;
 public class LearningSO : ScriptableObject
 {
     public List<LessonData> lessonDatas;
+    public List<string> videoUrls;
 }
 
 [Serializable]

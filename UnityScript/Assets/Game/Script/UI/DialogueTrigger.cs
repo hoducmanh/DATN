@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue;
     private void Awake()
     {
-        GameEvent.onStartDialogue += TriggerDialogue;
+        GameEvent.OnStartDialogue += TriggerDialogue;
     }
     private void TriggerDialogue(string id)
     {

@@ -1,4 +1,5 @@
 
+using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
@@ -17,6 +18,7 @@ public class BreakTheBlockManager : SingletonMonoBehavior<BreakTheBlockManager>
             OpenFile();
             GameManager.isModelOpen = true;
         }
+        StartCoroutine(DelayLoad());
         btbUIManager.OnMinigameStart();
     }
     public void OpenFile()
@@ -47,7 +49,6 @@ public class BreakTheBlockManager : SingletonMonoBehavior<BreakTheBlockManager>
             RedirectStandardOutput = true,
             Arguments = argument,
         };
-        CheckFolder.Instance.textLog.text = path + "lmao";
         process = Process.Start(processInfo);
 
 #endif
@@ -55,6 +56,11 @@ public class BreakTheBlockManager : SingletonMonoBehavior<BreakTheBlockManager>
     //System.Diagnostics.Process.Start("sub.exe");
     public void ProcessData(string keyCode)
     {
-        
+        GameEvent.OnDestroyBlock?.Invoke(keyCode);
+    }
+    IEnumerator DelayLoad()
+    {
+        yield return new WaitForSeconds(20f);
+        spawner.GameStart();
     }
 }

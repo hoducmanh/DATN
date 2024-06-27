@@ -3,12 +3,10 @@ using UnityEngine.UI;
 
 public class UISettingHome : MonoBehaviour
 {
-    //[SerializeField] private Toggle sound;
-    //[SerializeField] private Toggle music;
-    //[SerializeField] private Toggle vibrate;
     [SerializeField] private Button bClose;
     [SerializeField] private Slider sSound;
     [SerializeField] private Slider sMusic;
+    [SerializeField] private Button tutorialButton;
 
 
     private void Awake()
@@ -17,15 +15,15 @@ public class UISettingHome : MonoBehaviour
         {
             gameObject.SetActive(false);
         });
-        //sound.onValueChanged.AddListener(AudioManager.Instance.SwitchOnOffSound);
-        //music.onValueChanged.AddListener(AudioManager.Instance.SwitchOnOffMusic);
-        //vibrate.onValueChanged.AddListener(ViberationManager.Instance.SwitchOnOffVibrate);
+        tutorialButton.onClick.AddListener(OnClickTutorialButton);
     }
-
-    private void OnEnable()
+    private void OnClickTutorialButton()
     {
-        //sound.isOn = GameDataManager.Instance.SoundState == 0;
-        //music.isOn = GameDataManager.Instance.MusicState == 0;
-        //vibrate.isOn = GameDataManager.Instance.VibrateState == 0;
+        Application.OpenURL("https://en.wikipedia.org/wiki/Sign_language");
+    }
+    private void OnDestroy()
+    {
+        bClose.onClick.RemoveAllListeners();
+        tutorialButton.onClick.RemoveAllListeners();
     }
 }

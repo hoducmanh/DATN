@@ -6,28 +6,30 @@ using UnityEngine.UI;
 
 public class LearningUIManger : SingletonMonoBehavior<LearningUIManger>
 {
-    [SerializeField] private List<LearningSO> datas;
     [SerializeField] private Image image;
     [SerializeField] private TMP_Text text;
     [SerializeField] private Button pauseButton;
     [SerializeField] private GameObject correctPopup;
+    [SerializeField] private VideoController videoController;
+    [SerializeField] private GameObject pauseScreen;
     private int currentIndex = 0;
     // Start is called before the first frame update
     protected override void Awake()
     {
         base.Awake();
-        LearningManager.currentData = datas[GameManager.lessonId];
-        GameEvent.onCompleteLetter += NextLetter;
+        pauseButton.onClick.AddListener(OnClickPauseButton);
+        GameEvent.OnCompleteLetter += NextLetter;
     }
     void Start()
     {
         image.sprite = LearningManager.currentData.lessonDatas[currentIndex].sprite;
         text.text = LearningManager.currentData.lessonDatas[currentIndex].description;
+        videoController.PlayVideo(LearningManager.currentData.videoUrls[currentIndex]);
     }
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        GameEvent.onCompleteLetter -= NextLetter;
+        GameEvent.OnCompleteLetter -= NextLetter;
     }
     private void NextLetter()
     {
@@ -39,9 +41,15 @@ public class LearningUIManger : SingletonMonoBehavior<LearningUIManger>
         }
         image.sprite = LearningManager.currentData.lessonDatas[currentIndex].sprite;
         text.text = LearningManager.currentData.lessonDatas[currentIndex].description;
+        videoController.PlayVideo(LearningManager.currentData.videoUrls[currentIndex]);
     }
     public void SetCorrectPopup(bool appear)
     {
         correctPopup.SetActive(appear);
+    }
+    private void OnClickPauseButton()
+    {
+        pauseScreen.SetActive(true);
+        pauseButton.gameObject.SetActive(false);
     }
 }

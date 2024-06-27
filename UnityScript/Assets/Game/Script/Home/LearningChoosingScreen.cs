@@ -9,6 +9,7 @@ public class LearningChoosingScreen : MonoBehaviour
     [SerializeField] private GameObject prevScreen;
     [SerializeField] private List<Button> buttons;
     [SerializeField] private List<int> lessonIDs;
+    [SerializeField] private Button returnButton;
     private void Awake()
     {
         for (int i = 0; i < buttons.Count; i++)
@@ -22,6 +23,7 @@ public class LearningChoosingScreen : MonoBehaviour
                 Receiver.Instance.StartNewThread();
             });
         }
+        returnButton.onClick.AddListener(OnClickReturnButton);
     }
     private void OnDestroy()
     {
@@ -29,5 +31,11 @@ public class LearningChoosingScreen : MonoBehaviour
         {
             buttons[i].onClick.RemoveAllListeners();    
         }
+        returnButton.onClick.RemoveAllListeners();
+    }
+    private void OnClickReturnButton()
+    {
+        prevScreen.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

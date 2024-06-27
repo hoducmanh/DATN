@@ -11,8 +11,9 @@ public static class GameEvent
     public static OnColoring OnColoring;
     public static OnRestartGame OnRestartGame;
     public static DecreaseHealth DecreaseHealth;
-    public static OnStartDialogue onStartDialogue;
-    public static OnCompleteLetter onCompleteLetter;
+    public static OnStartDialogue OnStartDialogue;
+    public static OnCompleteLetter OnCompleteLetter;
+    public static OnDestroyBlock OnDestroyBlock;
 }
 public delegate void DecreaseHealth();
 
@@ -37,3 +38,5 @@ public delegate void OnColoring(string colorName);
 public delegate void OnStartDialogue(string id);
 
 public delegate void OnCompleteLetter();
+
+public delegate void OnDestroyBlock(string id);

@@ -11,7 +11,6 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(DelayProcess());
-        
     }
     private void SwapCam()
     {
@@ -32,7 +31,7 @@ public class CameraController : MonoBehaviour
     }
     IEnumerator DelayProcess()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(1f);
         if (tex != null)
         {
             display.texture = null;
@@ -41,8 +40,10 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            WebCamDevice device = WebCamTexture.devices[currentCamIndex];
-            tex = new WebCamTexture(device.name);
+            WebCamDevice[] cam_devices = WebCamTexture.devices;
+            Debug.Log(cam_devices[1].name);
+            //WebCamDevice device = WebCamTexture.devices[1];
+            tex = new WebCamTexture(cam_devices[1].name);
             display.texture = tex;
             tex.Play();
         }

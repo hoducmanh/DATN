@@ -12,10 +12,14 @@ public class LearningManager : SingletonMonoBehavior<LearningManager>
     public static bool isPause;
     private bool canReceiveData;
     private int currentIndex = 0;
-
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private GameObject tutorialScreen;
+    [SerializeField] private List<LearningSO> datas;
     private void Start()
     {
         canReceiveData = true;
+        currentData = datas[GameManager.lessonId];
+        currentSign = currentData.lessonDatas[currentIndex].name;
     }
     private void OnEnable()
     {
@@ -56,14 +60,20 @@ public class LearningManager : SingletonMonoBehavior<LearningManager>
             RedirectStandardOutput = true,
             Arguments = argument,
         };
-        CheckFolder.Instance.textLog.text = path + "lmao";
         process = Process.Start(processInfo);
 
 #endif
     }
     IEnumerator DelayLoad()
     {
-        yield return new WaitForSeconds(10.1f);
+        canReceiveData = false;
+        loadingScreen.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        tutorialScreen.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        tutorialScreen.SetActive(false);
+        canReceiveData = true;
+        loadingScreen.SetActive(false);
     }
     public void ProcessData(string sign)
     {
@@ -73,17 +83,20 @@ public class LearningManager : SingletonMonoBehavior<LearningManager>
     }
     IEnumerator AnalyzeData(string sign)
     {
+        UnityEngine.Debug.Log(currentSign);
         canReceiveData = false;
         if (sign == currentSign)
         {
             LearningUIManger.Instance.SetCorrectPopup(true);
             yield return new WaitForSeconds(1f);
             LearningUIManger.Instance.SetCorrectPopup(false);
+            yield return new WaitForSeconds(1f);
+            currentIndex++;
+            currentSign = currentData.lessonDatas[currentIndex].name;
+            UnityEngine.Debug.Log(currentSign);
+            GameEvent.OnCompleteLetter?.Invoke();
         }
-        yield return new WaitForSeconds(0.2f);
-        currentIndex++;
-        currentSign = currentData.lessonDatas[currentIndex].name;
-        GameEvent.onCompleteLetter?.Invoke();
+        yield return new WaitForSeconds(1f);
         canReceiveData = true;
     }
 }

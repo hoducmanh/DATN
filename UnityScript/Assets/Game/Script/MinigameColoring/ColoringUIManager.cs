@@ -13,14 +13,13 @@ public class ColoringUIManager : SingletonMonoBehavior<ColoringUIManager>
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject coloringScreen;
     [SerializeField] private GameObject coloringButtons;
+    [SerializeField] private GameObject tutorialScreen;
     [SerializeField] private Text coloringText;
 
     private void OnEnable()
     {
         Time.timeScale = 1f;
-        loadingScreen.SetActive(true);
         StartCoroutine(delayTime());
-        SetupUI();
         //GameEvent.OnColoring?.Invoke("yellow");
     }
     public void OnClickPauseButton()
@@ -38,11 +37,18 @@ public class ColoringUIManager : SingletonMonoBehavior<ColoringUIManager>
     {
         pauseButton.gameObject.SetActive(true);
         coloringButtons.gameObject.SetActive(true);
-        loadingScreen.SetActive(false);
     }
     public void TurnOnColoringScreen(string color)
     {
         coloringScreen.SetActive(true);
         coloringText.text = "To color " + color + ", please make correct sign corresponding to it";
+    }
+    public void SetupLoadingScreen(bool isOn)
+    {
+        loadingScreen.SetActive(isOn);  
+    }
+    public void SetupTutorialScreen(bool isOn)
+    {
+        tutorialScreen.SetActive(isOn); 
     }
 }

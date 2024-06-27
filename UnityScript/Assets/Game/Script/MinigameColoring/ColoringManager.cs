@@ -1,26 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using UnityEngine;
 
 public class ColoringManager : SingletonMonoBehavior<ColoringManager>
-{
-    Process process;
-    ProcessStartInfo processInfo;
-    private int currentPicture;
-    private GameObject coloringObject;
+{   
     public string currentCheckingColor;
+    [SerializeField] private Transform UITransform;
+    [SerializeField] private ColoringUIManager coloringUIManager;
+    private PictureSO currentPictureData;
+    private GameObject coloringObject;
+    private int currentPictureIndex;
+    private Process process;
+    private ProcessStartInfo processInfo;
+    private float loadTime;
+    public List<string> colorList = new();
     private void OnEnable()
     {
-        currentPicture = PlayerPrefs.GetInt(Constant.COLORING_LEVEL, 1);
+        currentPictureIndex = PlayerPrefs.GetInt(Constant.COLORING_LEVEL, 0);
         UnityEngine.Debug.Log("Coloring start");
+        StartCoroutine(DelayLoad());
         if (!GameManager.isModelOpen)
         {
             OpenFile();
             GameManager.isModelOpen = true;
         }
-        StartCoroutine(DelayLoad());
-
     }
     public void OpenFile()
     {
@@ -50,22 +55,47 @@ public class ColoringManager : SingletonMonoBehavior<ColoringManager>
             RedirectStandardOutput = true,
             Arguments = argument,
         };
-        CheckFolder.Instance.textLog.text = path + "lmao";
         process = Process.Start(processInfo);
 
 #endif
     }
     IEnumerator DelayLoad()
     {
-        yield return new WaitForSeconds(10.1f);
-        coloringObject = Instantiate(Resources.Load<GameObject>("Pictures/" + 1));
-    }
-    private void DoColor(string color)
-    {
-        GameEvent.OnColoring?.Invoke(color);
+        if (!GameManager.isModelOpen) loadTime = 10f;
+        else loadTime = 2f;
+        coloringUIManager.SetupLoadingScreen(true);
+        yield return new WaitForSeconds(loadTime);
+        coloringUIManager.SetupLoadingScreen(false);
+        if(loadTime > 2)
+            coloringUIManager.SetupTutorialScreen(true);
+        yield return new WaitForSeconds(loadTime);
+        if(loadTime > 2)
+            coloringUIManager.SetupTutorialScreen(false);
+        coloringObject = Instantiate(Resources.Load<GameObject>("Pictures/" + currentPictureIndex), UITransform);
+        currentPictureData = Resources.Load<PictureSO>("PictureSO/" + currentPictureIndex);
+        colorList = currentPictureData.colors;
     }
     public void ProcessData(string color)
     {
-        DoColor(color);
+        CheckData(color);
+    }
+    private void CheckData(string sign)
+    {
+        if (colorList.Contains(sign))
+        {
+            GameEvent.OnColoring?.Invoke(sign);
+            colorList.Remove(sign);
+            if(colorList.Count <= 0)
+                StartNewLevel();
+        }
+    }
+    private void StartNewLevel()
+    {
+        Destroy(coloringObject);
+        currentPictureIndex += 1;
+        PlayerPrefs.SetInt(Constant.COLORING_LEVEL, currentPictureIndex);
+        coloringObject = Instantiate(Resources.Load<GameObject>("Pictures/" + currentPictureIndex), UITransform);
+        currentPictureData = Resources.Load<PictureSO>("PictureSO/" + currentPictureIndex);
+        colorList = currentPictureData.colors;
     }
 }

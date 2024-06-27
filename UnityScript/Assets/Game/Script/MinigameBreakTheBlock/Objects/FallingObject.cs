@@ -12,7 +12,7 @@ public class FallingObject : MonoBehaviour
     {
         GameEvent.OnRestartGame += OnRestartGameEvent;
     }
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         GameEvent.OnRestartGame -= OnRestartGameEvent;
     }
