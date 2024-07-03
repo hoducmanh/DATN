@@ -50,10 +50,10 @@ MonoBehaviour:
       for \u201CT.\u201D Press your fingers against your palm. Then, push your thumb
       up between your index and middle finger."
   videoUrls:
-  - Assets/Game/Video/N.mov
-  - Assets/Game/Video/O.mov
-  - Assets/Game/Video/P.mov
-  - Assets/Game/Video/Q.mov
-  - Assets/Game/Video/R.mov
-  - Assets/Game/Video/S.mov
-  - Assets/Game/Video/T.mov
+  - /Video/N.mov
+  - /Video/O.mov
+  - /Video/P.mov
+  - /Video/Q.mov
+  - /Video/R.mov
+  - /Video/S.mov
+  - /Video/T.mov

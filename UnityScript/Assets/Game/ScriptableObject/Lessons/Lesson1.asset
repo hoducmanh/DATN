@@ -46,9 +46,9 @@ MonoBehaviour:
     description: "Press your index finger and thumb together with straight fingers
       for \u201CF.\u201D Keep your other 3 fingers straight"
   videoUrls:
-  - Assets/Game/Video/A.mov
-  - Assets/Game/Video/B.mov
-  - Assets/Game/Video/C.mov
-  - Assets/Game/Video/D.mov
-  - Assets/Game/Video/E.mov
-  - Assets/Game/Video/F.mov
+  - /Video/A.mov
+  - /Video/B.mov
+  - /Video/C.mov
+  - /Video/D.mov
+  - /Video/E.mov
+  - /Video/E.mov

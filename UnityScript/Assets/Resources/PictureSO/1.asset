@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60001af1f712e914b935a635f9637bf7, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  colorNum: 0
-  pictureDatas: []
+  colors:
+  - orange
+  - brown
+  - yellow
+  - white

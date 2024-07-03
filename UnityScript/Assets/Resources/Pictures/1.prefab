@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 224437782765775164}
   - component: {fileID: 222566237104829348}
   - component: {fileID: 114627205162930946}
+  - component: {fileID: 7116856193063016942}
   m_Layer: 9
   m_Name: 1
   m_TagString: Untagged
@@ -254,6 +255,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7116856193063016942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231480368513800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ac8c92beb2068468c0d407e1f05c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listColor:
+  - orange
+  - yellow
+  - white
+  - brown
+  pictureSO: {fileID: 11400000, guid: 33653894aad5d934ea983fb77ab538ae, type: 2}
 --- !u!1 &1236365120986502
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorHex: {r: 0.5019608, g: 0.2509804, b: 0.2509804, a: 1}
   colorName: brown
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 212986399056553708}
   id: 0
 --- !u!1 &1728696798585984
 GameObject:
@@ -1206,7 +1225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorHex: {r: 1, g: 1, b: 1, a: 1}
   colorName: white
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 212264707818443104}
   id: 0
 --- !u!1 &1990896473328868
 GameObject:

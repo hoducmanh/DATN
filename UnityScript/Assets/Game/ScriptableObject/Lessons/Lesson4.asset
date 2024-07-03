@@ -43,9 +43,9 @@ MonoBehaviour:
       Form the letter \"D\", with your index finger out, and write a letter \u201CZ\u201D
       in the air."
   videoUrls:
-  - Assets/Game/Video/U.mov
-  - Assets/Game/Video/V.mov
-  - Assets/Game/Video/W.mov
-  - Assets/Game/Video/X.mov
-  - Assets/Game/Video/Y.mov
-  - Assets/Game/Video/Z.mov
+  - /Video/U.mov
+  - /Video/V.mov
+  - /Video/W.mov
+  - /Video/X.mov
+  - /Video/Y.mov
+  - /Video/Z.mov

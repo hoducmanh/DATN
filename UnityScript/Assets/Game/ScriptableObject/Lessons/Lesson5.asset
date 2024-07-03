@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lessonDatas:
   - sprite: {fileID: 21300000, guid: 168b89f215088fc4ca7b9b55a08f848a, type: 3}
-    name: Red
+    name: red
     description: Make the sign for red by making a fist, and extending only your
       index finger. Use the finger to brush down on your lips.
   - sprite: {fileID: 21300000, guid: 1fc23c47c47a8c445aa66db946b8c6cf, type: 3}
-    name: Blue
+    name: blue
     description: The blue sign is made by making the ASL letter B sign out by the
       side of your body. Take your fingers outstretched with your thumb tucked under.
       Then twist your hand left and right out by the side of your body.
   - sprite: {fileID: 21300000, guid: c7314ea86d991f54fbefed6b3070171d, type: 3}
-    name: Yellow
+    name: yellow
     description: To sign yellow, make a fist with the thumb and pinkie finger extended
       (the ASL sign for 'Y'), then position your hand by the side of your body and
       twist the hand back and forth.
   - sprite: {fileID: 21300000, guid: 1268c2c79f48e774a9d61af4b9d9354e, type: 3}
-    name: Green
+    name: green
     description: To sign green, make your hand into a fist with your index finger
       and thumb extended. With your fingers at shoulder level, twist your hand back
       and forth. The sign for green is like twisting the sign for the ASL letter
       sign 'G'.
   videoUrls:
-  - Assets/Game/Video/ColorVideo/Red.mp4
-  - Assets/Game/Video/ColorVideo/Blue.mp4
-  - Assets/Game/Video/ColorVideo/Yellow.mp4
-  - Assets/Game/Video/ColorVideo/Green.mp4
+  - /Video/ColorVideo/Red.mp4
+  - /Video/ColorVideo/Blue.mp4
+  - /Video/ColorVideo/Yellow.mp4
+  - /Video/ColorVideo/Green.mp4

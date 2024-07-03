@@ -2439,7 +2439,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ac8c92beb2068468c0d407e1f05c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listColor: []
+  listColor:
+  - orange
+  - brown
+  - yellow
   pictureSO: {fileID: 11400000, guid: 202f6585625b13c42b612fc95e4ff7f9, type: 2}
 --- !u!1 &1020872316068986911
 GameObject:

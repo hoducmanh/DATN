@@ -55,10 +55,10 @@ MonoBehaviour:
     description: 'Point 3 fingers: index, middle and ring downward while pinkie and
       thumb make a circle'
   videoUrls:
-  - Assets/Game/Video/G.mov
-  - Assets/Game/Video/H.mov
-  - Assets/Game/Video/I.mov
-  - Assets/Game/Video/J.mov
-  - Assets/Game/Video/K.mov
-  - Assets/Game/Video/L.mov
-  - Assets/Game/Video/M.mov
+  - /Video/G.mov
+  - /Video/H.mov
+  - /Video/I.mov
+  - /Video/J.mov
+  - /Video/K.mov
+  - /Video/L.mov
+  - /Video/M.mov
