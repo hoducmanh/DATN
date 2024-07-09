@@ -111,6 +111,8 @@ public class LearningManager : SingletonMonoBehavior<LearningManager>
     {
         canReceiveData = true;
         GameManager.lessonId++;
+        if(GameManager.lessonId >= currentData.lessonDatas.Count)
+            GameManager.lessonId = 0;
         currentIndex = 0;
         currentData = datas[GameManager.lessonId];
         currentSign = currentData.lessonDatas[currentIndex].name;

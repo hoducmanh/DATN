@@ -10,6 +10,8 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
     {
         base.Awake();
         music.Play();
+        MusicVolumn(PlayerPrefs.GetFloat("Music", 1f));
+        SoundVolumn(PlayerPrefs.GetFloat("Sound", 1f));
     }
     public void ClickButton()
     {

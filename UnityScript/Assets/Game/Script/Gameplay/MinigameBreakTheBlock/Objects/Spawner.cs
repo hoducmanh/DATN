@@ -9,6 +9,9 @@ public class Spawner : SingletonMonoBehavior<Spawner>
     public static List<FallingObject> listObj = new();
     public static Action<string> OnDestroyObject;
     public bool isIngame = false;
+    [SerializeField] private float minSpawnTime = 1.5f;
+    [SerializeField] private float maxSpawnTime = 2f;
+    private float xPreValue;
     protected override void Awake()
     {
         base.Awake();
@@ -17,7 +20,7 @@ public class Spawner : SingletonMonoBehavior<Spawner>
     }
     private IEnumerator SpawnObject()
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 1.2f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(minSpawnTime, maxSpawnTime));
         var obj = Instantiate(fallingObjPrefab, new Vector2(UnityEngine.Random.Range(-xBound, xBound), ybound), Quaternion.identity);
         
         listObj.Add(obj);

@@ -2,11 +2,14 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class FallingObject : MonoBehaviour
 {
     [SerializeField] protected List<string> letter = new();
     [SerializeField] protected int health;
+    [SerializeField] protected GameObject effect;
+    [SerializeField] protected GameObject sprite;
     //private string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private void Start()
     {
@@ -27,12 +30,17 @@ public class FallingObject : MonoBehaviour
     {
         health -= 1;
         if(health <= 0)
-            DestroyThisObject();
+            StartCoroutine(DestroyThisObject());
+
     }
-    protected void DestroyThisObject()
+    IEnumerator DestroyThisObject()
     {
         BreakTheBlockUIManager.Instance.OnObjectDestroy();
+        effect.SetActive(true);
+        sprite.SetActive(false);
+        yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
+        
     }
     private void OnRestartGameEvent()
     {

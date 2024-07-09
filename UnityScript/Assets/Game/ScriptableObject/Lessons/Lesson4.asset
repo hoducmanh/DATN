@@ -33,11 +33,11 @@ MonoBehaviour:
     description: "Make a fist, then raise and crook your index finger to make \u201CX.\u201D
       Press your thumb against your palm and then wrap your middle, ring, and pinkie
       fingers over it. Curl your index finger."
-  - sprite: {fileID: 21300000, guid: ddd6232dc2c80ec46a738c9140baf4b4, type: 3}
+  - sprite: {fileID: 21300000, guid: 24e06b738f76f9744892d2f73a679f1a, type: 3}
     name: Y
     description: "Stick out your pinkie and thumb for a \u201CY.\u201D Press your
       other fingers against your palm."
-  - sprite: {fileID: 21300000, guid: 24e06b738f76f9744892d2f73a679f1a, type: 3}
+  - sprite: {fileID: 21300000, guid: ddd6232dc2c80ec46a738c9140baf4b4, type: 3}
     name: Z
     description: "Write the letter \u201CZ\u201D in the air with your index finger.
       Form the letter \"D\", with your index finger out, and write a letter \u201CZ\u201D
